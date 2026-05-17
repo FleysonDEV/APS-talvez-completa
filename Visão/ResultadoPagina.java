@@ -58,6 +58,3 @@ public class ResultadoPagina extends JFrame implements Exibivel {
         });
     }
 }
-
-
-

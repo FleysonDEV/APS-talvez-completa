@@ -19,14 +19,14 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        JLabel lblTitulo = new JLabel("SeraVerdade", SwingConstants.CENTER);
+        JLabel lblTitulo = new JLabel("Olá! Seja bem vindo ao - SeraVerdade?", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 36));
         lblTitulo.setBorder(BorderFactory.createEmptyBorder(30, 10, 20, 10));
         add(lblTitulo, BorderLayout.NORTH);
 
         JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 15));
-        JButton btIniciar = new JButton("Iniciar Jogo");
-        JButton btComoJogar = new JButton("Como Jogar");
+        JButton btIniciar = new JButton("Iniciar Quiz");
+        JButton btComoJogar = new JButton("Tutorial");
         JButton btSair = new JButton("Sair");
 
         Dimension dBotao = new Dimension(150, 40);
@@ -222,37 +222,36 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             bancoManchetes.add(new QuestaoQuiz( true, "noticia 17.jpg", just17, "A notícia sobre a incorporação da vacina contra o VSR no SUS é verdadeira. O texto relata uma decisão factual do Ministério da Saúde baseada em critérios epidemiológicos exatos, apontando corretamente que o Vírus Sincicial Respiratório é responsável pela grande maioria dos casos de bronquiolite e que a mortalidade da doença afeta principalmente menores de 2 anos. A veracidade é reforçada pela precisão técnica ao citar paralelamente a adoção do anticorpo monoclonal nirsevimabe e ao delimitar de forma rigorosa o público-alvo de alto risco para essa tecnologia, composto por bebês prematuros e crianças com comorbidades."));
 
             ArrayList<String> just18 = new ArrayList<>();
-            just18.add("Terminologia científica");
-            just18.add("Reconhecimento de limitações do estudo");
-            just18.add("Manipulação de dados");
-            just18.add("Fraude institucional");
+            just18.add("Veículo de imprensa veridico");
+            just18.add("Vocabulário técnico");
+            just18.add("Contradição de conceito");
+            just18.add("Cura milagrosa");
             just18.add("Falta de dados de eficácia imediatos");
-            just18.add("Controle populacional por vetores");
+            just18.add("Falta de especificação do tipo de câncer");
 
-            bancoManchetes.add(new QuestaoQuiz( true, "saveiro.jfif", just18, "A notícia sobre a vacina contra a doença de Lyme é verdadeira. O texto relata dados factuais de um ensaio clínico com 70% de eficiência desenvolvido pela Pfizer e Valneva, mantendo o rigor científico ao expor as limitações do estudo, como o número de casos menor que o previsto. A veracidade é respaldada pela presença de créditos jornalísticos e fotográficos auditáveis (AP), indicação precisa de data e fuso horário, além da exibição visual correta do carrapato, vetor real de transmissão da doença."));
+            bancoManchetes.add(new QuestaoQuiz( true, "noticia 18.jpg", just18, "A notícia sobre a vacina contra o HPV é verdadeira porque ensina como a ciência funciona na prática. O texto explica de forma realista que o imunizante passou por \"análises pré-clínicas\", ou seja, testes iniciais em laboratório antes de ser aplicado em seres humanos. Em vez de prometer uma cura milagrosa, a matéria detalha o mecanismo biológico correto: o composto ajuda a atacar fragmentos do vírus que causam os tumores, mostrando o papel preventivo e rigoroso da pesquisa científica."));
 
             ArrayList<String> just19 = new ArrayList<>();
-            just19.add("Saúde pública real");
-            just19.add("Tom informativo e neutro");
-            just19.add("Coerência com a realidade epidemiológica");
-            just19.add("Reforço ineficaz");
-            just19.add("Fonte não confiável");
-            just19.add("Manipulação por indução ao compartilhamento");
+            just19.add("Terminologia científica");
+            just19.add("Reconhecimento de limitações do estudo");
+            just19.add("Manipulação de dados");
+            just19.add("Fraude institucional");
+            just19.add("Falta de dados de eficácia imediatos");
+            just19.add("Controle populacional por vetores");
 
-            bancoManchetes.add(new QuestaoQuiz( true, "noticia 19.jpg", just19, "A notícia sobre a recomendação de reforço vacinal é verdadeira. O texto aborda um cenário real de utilidade pública e orientação clínica, tratando de forma neutra e puramente informativa o tempo necessário de espera após a infecção por Covid ou gripe para a aplicação do imunizante. A publicação demonstra rigor formal por meio de uma formatação estruturada, ausência de erros ortográficos, uso de botões de compartilhamento padrão de portais jornalísticos e uma fotografia perfeitamente contextualizada acompanhada de legenda e créditos institucionais legítimos.\n" ));
+            bancoManchetes.add(new QuestaoQuiz( true, "noticia 19.jpg", just19, "A notícia sobre a vacina contra a doença de Lyme é verdadeira. O texto relata dados factuais de um ensaio clínico com 70% de eficiência desenvolvido pela Pfizer e Valneva, mantendo o rigor científico ao expor as limitações do estudo, como o número de casos menor que o previsto. A veracidade é respaldada pela presença de créditos jornalísticos e fotográficos auditáveis (AP), indicação precisa de data e fuso horário, além da exibição visual correta do carrapato, vetor real de transmissão da doença." ));
 
             ArrayList<String> just20 = new ArrayList<>();
-            just20.add("Fontes Anônimas");
-            just20.add("Linguagem Tendenciosa");
-            just20.add("Teoria da Conspiração");
-            just20.add("Ausência de Recomendações Oficiais");
-            just20.add("Relato de Profissional da Linha de Frente");
-            just20.add("Padrão de Sintomas Específico");
+            just20.add("Saúde pública real");
+            just20.add("Tom informativo e neutro");
+            just20.add("Coerência com a realidade epidemiológica");
+            just20.add("Reforço ineficaz");
+            just20.add("Fonte não confiável");
+            just20.add("Manipulação por indução ao compartilhamento");
 
-            bancoManchetes.add(new QuestaoQuiz(true, "noticia 20.jpg", just20, "a"));
+            bancoManchetes.add(new QuestaoQuiz(true, "noticia 20.jpg", just20, "A notícia sobre a recomendação de reforço vacinal é verdadeira. O texto aborda um cenário real de utilidade pública e orientação clínica, tratando de forma neutra e puramente informativa o tempo necessário de espera após a infecção por Covid ou gripe para a aplicação do imunizante. A publicação demonstra rigor formal por meio de uma formatação estruturada, ausência de erros ortográficos, uso de botões de compartilhamento padrão de portais jornalísticos e uma fotografia perfeitamente contextualizada acompanhada de legenda e créditos institucionais legítimos."));
 
             //Método responsável por gerar as perguntas aleatoriamente
-
             Collections.shuffle(bancoManchetes);
 
             // bloco que limita a quantidade do quiz em apenas 5 rodadas.

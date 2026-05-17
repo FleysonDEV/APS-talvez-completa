@@ -49,6 +49,8 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         String txtB = opcoes.size() > 1 ? opcoes.get(1) : "Opção B";
         String txtC = opcoes.size() > 2 ? opcoes.get(2) : "Opção C";
         String txtD = opcoes.size() > 3 ? opcoes.get(3) : "Opção D";
+        String txtE = opcoes.size() > 4 ? opcoes.get(4) : "Opção D";
+        String txtF = opcoes.size() > 5 ? opcoes.get(5) : "Opção D";
 
         Font fonteChecks = new Font("Arial", Font.PLAIN, 16);
 
@@ -56,21 +58,29 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         JCheckBox check2 = new JCheckBox(txtB);
         JCheckBox check3 = new JCheckBox(txtC);
         JCheckBox check4 = new JCheckBox(txtD);
+        JCheckBox check5 = new JCheckBox(txtE);
+        JCheckBox check6 = new JCheckBox(txtF);
 
         check1.setFont(fonteChecks);
         check2.setFont(fonteChecks);
         check3.setFont(fonteChecks);
         check4.setFont(fonteChecks);
+        check5.setFont(fonteChecks);
+        check6.setFont(fonteChecks);
 
         check1.setAlignmentX(Component.LEFT_ALIGNMENT);
         check2.setAlignmentX(Component.LEFT_ALIGNMENT);
         check3.setAlignmentX(Component.LEFT_ALIGNMENT);
         check4.setAlignmentX(Component.LEFT_ALIGNMENT);
+        check5.setAlignmentX(Component.LEFT_ALIGNMENT);
+        check6.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         painelCentral.add(check1);
         painelCentral.add(check2);
         painelCentral.add(check3);
         painelCentral.add(check4);
+        painelCentral.add(check5);
+        painelCentral.add(check6);
 
         add(painelCentral, BorderLayout.CENTER);
 
