@@ -23,7 +23,6 @@ public class TelaNoticia extends JFrame implements Exibivel {
 
         setTitle("SeraVerdade - Rodada " + rodadaAtual + " de 5");
 
-
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -33,10 +32,8 @@ public class TelaNoticia extends JFrame implements Exibivel {
         lblInstrucao.setFont(new Font("Arial", Font.BOLD, 22));
         add(lblInstrucao, BorderLayout.NORTH);
 
-
         JPanel painelCentral = new JPanel(new BorderLayout(5, 5));
         painelCentral.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-
 
         java.net.URL imgUrl = getClass().getResource("/imagem/" + questaoAtual.getCaminhoImagem());
 
@@ -48,13 +45,12 @@ public class TelaNoticia extends JFrame implements Exibivel {
             ImageIcon imgIcon = new ImageIcon(imgUrl);
             Image img = imgIcon.getImage();
 
-
-            Image imagemRedimensionada = img.getScaledInstance(1000, 540, Image.SCALE_SMOOTH);
+            Image imagemRedimensionada = img.getScaledInstance(540, 420, Image.SCALE_SMOOTH);
             ImageIcon iconeFormatado = new ImageIcon(imagemRedimensionada);
 
             JLabel lblImagem = new JLabel(iconeFormatado);
 
-            lblImagem.setPreferredSize(new Dimension(1000, 540));
+            lblImagem.setPreferredSize(new Dimension(540, 420));
 
             painelCentral.add(lblImagem, BorderLayout.CENTER);
 
@@ -63,8 +59,6 @@ public class TelaNoticia extends JFrame implements Exibivel {
             pularRodadaSemPontuar();
             return;
         }
-
-
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setPreferredSize(new Dimension(0, 0));

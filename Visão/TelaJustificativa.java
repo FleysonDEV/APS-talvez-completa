@@ -1,4 +1,5 @@
 package Visão;
+import java.util.Collections;
 import Modelo.*;
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,9 @@ public class TelaJustificativa extends JFrame implements Exibivel {
     private ArrayList<QuestaoQuiz> listaDoRound;
     private String explicacao;
 
+    private ArrayList<JRadioButton> listaRadios = new ArrayList<>();
+    private ButtonGroup grupoJustificativas = new ButtonGroup();
+
     public TelaJustificativa(QuestaoQuiz questao, boolean escolha, int rodada, double pontuacao, ArrayList<QuestaoQuiz> lista) {
         this.questaoAtual = questao;
         this.escolhaUsuario = escolha;
@@ -23,11 +27,13 @@ public class TelaJustificativa extends JFrame implements Exibivel {
 
     @Override
     public void configurarLayout() {
+        // Inicialização das propriedades básicas da Janela (JFrame)
         setTitle("SeraVerdade - Justificativa - Rodada " + rodada);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
+
 
         JLabel lblRodada = new JLabel("Por que você acha que é " + (escolhaUsuario ? "Verdadeiro" : "Falso") + "?", SwingConstants.CENTER);
         lblRodada.setFont(new Font("Arial", Font.BOLD, 22));
@@ -37,52 +43,75 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
         painelCentral.setBorder(BorderFactory.createEmptyBorder(70, 80, 20, 20));
 
-        JLabel Instrucao = new JLabel("Selecione uma ou mais justificativas de suporte:");
+        JLabel Instrucao = new JLabel("Selecione uma justificativa de suporte:");
         Instrucao.setFont(new Font("Arial", Font.BOLD, 18));
         Instrucao.setAlignmentX(Component.LEFT_ALIGNMENT);
         painelCentral.add(Instrucao);
         painelCentral.add(Box.createRigidArea(new Dimension(0, 10)));
 
+
         ArrayList<String> opcoes = questaoAtual.getJustificativas();
+        Collections.shuffle(opcoes);
 
         String txtA = opcoes.size() > 0 ? opcoes.get(0) : "Opção A";
         String txtB = opcoes.size() > 1 ? opcoes.get(1) : "Opção B";
         String txtC = opcoes.size() > 2 ? opcoes.get(2) : "Opção C";
         String txtD = opcoes.size() > 3 ? opcoes.get(3) : "Opção D";
-        String txtE = opcoes.size() > 4 ? opcoes.get(4) : "Opção D";
-        String txtF = opcoes.size() > 5 ? opcoes.get(5) : "Opção D";
+        String txtE = opcoes.size() > 4 ? opcoes.get(4) : "Opção E";
+        String txtF = opcoes.size() > 5 ? opcoes.get(5) : "Opção F";
 
         Font fonteChecks = new Font("Arial", Font.PLAIN, 16);
 
-        JCheckBox check1 = new JCheckBox(txtA);
-        JCheckBox check2 = new JCheckBox(txtB);
-        JCheckBox check3 = new JCheckBox(txtC);
-        JCheckBox check4 = new JCheckBox(txtD);
-        JCheckBox check5 = new JCheckBox(txtE);
-        JCheckBox check6 = new JCheckBox(txtF);
 
-        check1.setFont(fonteChecks);
-        check2.setFont(fonteChecks);
-        check3.setFont(fonteChecks);
-        check4.setFont(fonteChecks);
-        check5.setFont(fonteChecks);
-        check6.setFont(fonteChecks);
+        JRadioButton radio1 = new JRadioButton(txtA);
+        JRadioButton radio2 = new JRadioButton(txtB);
+        JRadioButton radio3 = new JRadioButton(txtC);
+        JRadioButton radio4 = new JRadioButton(txtD);
+        JRadioButton radio5 = new JRadioButton(txtE);
+        JRadioButton radio6 = new JRadioButton(txtF);
 
-        check1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        check2.setAlignmentX(Component.LEFT_ALIGNMENT);
-        check3.setAlignmentX(Component.LEFT_ALIGNMENT);
-        check4.setAlignmentX(Component.LEFT_ALIGNMENT);
-        check5.setAlignmentX(Component.LEFT_ALIGNMENT);
-        check6.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        painelCentral.add(check1);
-        painelCentral.add(check2);
-        painelCentral.add(check3);
-        painelCentral.add(check4);
-        painelCentral.add(check5);
-        painelCentral.add(check6);
+        radio1.setFont(fonteChecks);
+        radio2.setFont(fonteChecks);
+        radio3.setFont(fonteChecks);
+        radio4.setFont(fonteChecks);
+        radio5.setFont(fonteChecks);
+        radio6.setFont(fonteChecks);
+
+
+        radio1.setAlignmentX(Component.LEFT_ALIGNMENT);
+        radio2.setAlignmentX(Component.LEFT_ALIGNMENT);
+        radio3.setAlignmentX(Component.LEFT_ALIGNMENT);
+        radio4.setAlignmentX(Component.LEFT_ALIGNMENT);
+        radio5.setAlignmentX(Component.LEFT_ALIGNMENT);
+        radio6.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+
+        painelCentral.add(radio1);
+        painelCentral.add(radio2);
+        painelCentral.add(radio3);
+        painelCentral.add(radio4);
+        painelCentral.add(radio5);
+        painelCentral.add(radio6);
 
         add(painelCentral, BorderLayout.CENTER);
+
+
+        grupoJustificativas.add(radio1);
+        grupoJustificativas.add(radio2);
+        grupoJustificativas.add(radio3);
+        grupoJustificativas.add(radio4);
+        grupoJustificativas.add(radio5);
+        grupoJustificativas.add(radio6);
+
+
+        listaRadios.add(radio1);
+        listaRadios.add(radio2);
+        listaRadios.add(radio3);
+        listaRadios.add(radio4);
+        listaRadios.add(radio5);
+        listaRadios.add(radio6);
+
 
         JPanel painelBotoes = new JPanel(new GridLayout(1, 2, 10, 0));
         painelBotoes.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
@@ -99,7 +128,7 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         add(painelBotoes, BorderLayout.SOUTH);
 
         botaoConfirmar.addActionListener(e -> {
-            boolean justificou = (check1.isSelected() || check2.isSelected() || check3.isSelected() || check4.isSelected());
+            boolean justificou = (radio1.isSelected() || radio2.isSelected() || radio3.isSelected() || radio4.isSelected() || radio5.isSelected() || radio6.isSelected());
             if (!justificou) {
                 JOptionPane.showMessageDialog(this, "Nenhuma justificativa selecionada. Caso não saiba, clique em 'Pular Justificativa'.", "Aviso", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -113,42 +142,60 @@ public class TelaJustificativa extends JFrame implements Exibivel {
     }
 
     private void FimDeRodada(boolean justificou) {
-        double pontosGanhos = 0;
-        boolean acertou = (escolhaUsuario == questaoAtual.isEVerdadeira());
+        boolean acertouNoticia = (escolhaUsuario == questaoAtual.isEVerdadeira());
+        boolean justificaCorreta = true;
 
-        if (acertou && justificou) {
+        if (justificou) {
+            for (JRadioButton rad : listaRadios) {
+                String textoOpcao = rad.getText();
+                boolean usuarioMarcou = rad.isSelected();
+                boolean ehVerdadeira = questaoAtual.getJustificativasCorretas().contains(textoOpcao);
+
+                if (usuarioMarcou != ehVerdadeira) {
+                    justificaCorreta = false;
+                    break;
+                }
+            }
+        } else {
+            justificaCorreta = false;
+        }
+        double pontosGanhos = 0.0;
+        if (acertouNoticia && justificaCorreta) {
             pontosGanhos = 2.0;
-        } else if (!acertou && justificou) {
+        } else if (acertouNoticia && !justificaCorreta) {
             pontosGanhos = 1.5;
-        } else if (acertou && !justificou) {
-            pontosGanhos = 1.0;
         } else {
             pontosGanhos = 0.0;
         }
 
         double somaResultado = this.pontuacao + pontosGanhos;
 
-        String statusAcerto;
-        if (acertou) {
-            statusAcerto = "ACERTOU!!";
+
+        String statusAcerto = "";
+        if (acertouNoticia) {
+            if (justificaCorreta) {
+                statusAcerto = "Você ACERTOU a resposta e a JUSTIFICATIVA!";
+            } else {
+                statusAcerto = "Você ACERTOU a notícia, mas ERROU a justificativa!";
+            }
         } else {
-            statusAcerto = "ERROU!!";
+            statusAcerto = " Você ERROU a resposta principal da notícia! ";
         }
 
         String respostaCerta = questaoAtual.isEVerdadeira() ? "VERDADEIRA" : "FALSA";
-
         String explicacaoFormatada = quebrarTexto(questaoAtual.getExplicacaoFinal(), 50);
 
-
+        // Concatenação para o corpo da caixa de diálogo
         String mensagem = statusAcerto + "\n\n" +
                 "A notícia é: " + respostaCerta + "\n\n" +
                 "Explicação:\n" + explicacaoFormatada + "\n\n" +
                 "Pontos ganho: " + pontosGanhos;
 
-
         JOptionPane.showMessageDialog(this, mensagem, "Resultado da Rodada", JOptionPane.INFORMATION_MESSAGE);
 
+
         this.dispose();
+
 
         if (this.rodada < listaDoRound.size()) {
             new TelaNoticia(this.rodada + 1, somaResultado, this.listaDoRound).setVisible(true);
@@ -156,7 +203,6 @@ public class TelaJustificativa extends JFrame implements Exibivel {
             new ResultadoPagina(somaResultado).setVisible(true);
         }
     }
-
 
     private String quebrarTexto(String texto, int limite) {
         if (texto == null || texto.length() <= limite) {
