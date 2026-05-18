@@ -37,7 +37,7 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
         painelBotoes.add(btComoJogar);
         painelBotoes.add(btSair);
         add(painelBotoes, BorderLayout.CENTER);
-        //banco de dados do quiz, responsável por armazenar as justificativa, imagens(notícias), explicações e resposta da notícias(verdadeiro ou falso).
+
         btIniciar.addActionListener(e -> {
             ArrayList<QuestaoQuiz> bancoManchetes = new ArrayList<>();
 
@@ -46,11 +46,13 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             just1.add("Números Tendenciosos.");
             just1.add("Transparência sobre Riscos.");
             just1.add("Evidência de Dados Oficiais.");
+            just1.add("Omissão de Contexto");
             just1.add("Alerta de Segurança em Larga Escala.");
 
             ArrayList<String> corretas1 = new ArrayList<>();
             corretas1.add("Linguagem Tendenciosa.");
             corretas1.add("Números Tendenciosos.");
+            corretas1.add("Omissão de Contexto.");
 
             bancoManchetes.add(new QuestaoQuiz(false, "noticia 1.jpg", just1, corretas1, "Este post é enganoso porque distorce as conclusões de um estudo científico real para criar pânico. Embora a pesquisa com 99 milhões de pessoas exista, os autores reafirmam que as vacinas são safe e que os benefícios superam vastamente os riscos. O post manipula dados ao exibir porcentagens altas sem mencionar que os eventos são extremamente raros, ocorrendo em poucos casos por milhão. \n" +
                     "Além disso, a ciência comprova que o risco de complicações cardíacas ou neurológicas é muito maior após a infecção pelo vírus do que após a vacinação. O estudo buscou apenas monitorar sinais de segurança já conhecidos, mas o post retira esses dados de contexto e omite a conclusão principal dos cientistas para induzir o público ao erro.\n"));
@@ -208,7 +210,7 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
 
             ArrayList<String> just12 = new ArrayList<>();
             just12.add("Fonte Governamental Oficial");
-            just12.add("Transparência de ParcerPartners");
+            just12.add("Transparência de ParcerParcerias");
             just12.add("Viés Político/Institucional");
             just12.add("Insinuação de Incentivo Sexual");
             just12.add("Invasividade");
@@ -216,12 +218,12 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
 
             ArrayList<String> corretas12 = new ArrayList<>();
             corretas12.add("Fonte Governamental Oficial");
-            corretas12.add("Transparência de ParcerPartners");
+            corretas12.add("Transparência de Parcerias");
 
             bancoManchetes.add(new QuestaoQuiz(true, "noticia 12.jpg", just12, corretas12, "A notícia divulgada pela EBC é verdadeira. O pronunciamento do Ministro da Saúde, Alexandre Padilha, baseia-se em um estudo real da Fiocruz, apoiado pela Royal Society e pelo CNPq, que comprova a eficácia da vacina disponível no SUS. Os dados científicos confirmam que a imunização contra o HPV reduz drasticamente os casos de câncer de colo de útero e de lesões pré-cancerosas graves, alinhando-se ao consenso médico global sobre a segurança e a importância da vacina."));
 
             ArrayList<String> just13 = new ArrayList<>();
-            just13.add("Abordagem Científica");
+            just13.add("Abordagem Cientifical");
             just13.add("Transparência de Parcerias");
             just13.add("Ausência de Sensacionalismo");
             just13.add("Preconceito Institucional");
@@ -229,14 +231,14 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             just13.add("Ocultação de Dados");
 
             ArrayList<String> corretas13 = new ArrayList<>();
-            corretas13.add("Abordagem Científica");
+            corretas13.add("Abordagem Cientifical");
             corretas13.add("Transparência de Parcerias");
             corretas13.add("Ausência de Sensacionalismo");
 
             bancoManchetes.add(new QuestaoQuiz(true, "noticia 13.jpg", just13, corretas13, "A notícia sobre a pesquisa da vacina contra a sífilis é verdadeira. O texto detalha um estudo clínico internacional real, coordenado pela University of North Carolina (UNC) em cinco países. No Brasil, a investigação científica legítima está sendo conduzida por instituições oficiais de saúde e pesquisa, a Clínica do Homem do Recife e o Hospital Universitário Oswaldo Cruz (UPE), contando com o apoio técnico da organização global Aids Healthcare Foundation (AHF) para mapear a bactéria Treponema pallidum em estágios iniciais.\n"));
 
             ArrayList<String> just14 = new ArrayList<>();
-            just14.add("Abordagem Científica");
+            just14.add("Abordagem Cientifical");
             just14.add("Termo Científico 'experimental'");
             just14.add("Falta de Dados a Longo Prazo");
             just14.add("Omissão de Contexto");
@@ -244,7 +246,7 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             just14.add("Imunidade Espontânea");
 
             ArrayList<String> corretas14 = new ArrayList<>();
-            corretas14.add("Abordagem Científica");
+            corretas14.add("Abordagem Cientifical");
             corretas14.add("Termo Científico 'experimental'");
 
             bancoManchetes.add(new QuestaoQuiz(true, "noticia 14.jpg", just14, corretas14, "A notícia sobre as vacinas de mRNA contra o câncer é verdadeira. Ao contrário dos imunizantes tradicionais que previnem infecções, essa tecnologia é um tratamento terapêutico experimental: ela usa o sequenciamento genético do tumor do próprio paciente para criar uma vacina personalizada que ensina o sistema imunológico a destruir as células cancerígenas. Os testes clínicos para melanoma e câncer de pâncreas são reais e promissores, e o texto mantém o rigor científico ao reforçar que a terapia ainda não é de uso geral."));
@@ -338,7 +340,6 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             bancoManchetes.add(new QuestaoQuiz(true, "noticia 20.jpg", just20, corretas20, "A notícia sobre a recomendação de referência vacinal é verdadeira. O texto aborda um cenário real de utilidade pública e orientação clínica, tratando de forma neutra e puramente informativa o tempo necessário de espera após a infecção por Covid ou gripe para a aplicação do imunizante. A publicação demonstra rigor formal por meio de uma formatação estruturada, ausência de erros ortográficos, uso de botões de compartilhamento padrão de portais jornalísticos e uma fotografia perfeitamente contextualizada acompanhada de legenda e créditos institucionais legítimos."));
             Collections.shuffle(bancoManchetes);
 
-            // bloco que limita a quantidade do quiz em apenas 5 rodadas.
             int limite = Math.min(bancoManchetes.size(), 5);
             ArrayList<QuestaoQuiz> selecionadas = new ArrayList<>(bancoManchetes.subList(0, limite));
 
@@ -348,8 +349,9 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
 
         btComoJogar.addActionListener(e -> {
             String regras = "REGRAS DO JOGO \n\n" +
-                    "1. Cada round possui uma notícia aleatória.\n" +
-                    "2. Após responder, você deve escolher as justificativas.\n\n" +
+                    "1. Cada round possui uma notícia aleatória. Você deve responder se a notícia é verdadeira ou falsa\n" +
+                    "2. Após responder, você deve escolher as justificativas.\n" +
+                    "3. Ao final do quiz será classificado seu nível de compreensão sobre o tema. \n\n"+
                     " SISTEMA DE PONTOS \n" +
                     "• Acertou e Justificou: 2,0 pts\n" +
                     "• Acertou e Não Justificou: 1,5 pts\n" +
