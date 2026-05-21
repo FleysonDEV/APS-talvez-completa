@@ -27,28 +27,58 @@ public class TelaJustificativa extends JFrame implements Exibivel {
 
     @Override
     public void configurarLayout() {
-        // Inicialização das propriedades básicas da Janela (JFrame)
+
         setTitle("SeraVerdade - Justificativa - Rodada " + rodada);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout(10, 10));
+        setLayout(new BorderLayout(10, 5));
 
 
         JLabel lblRodada = new JLabel("Por que você acha que é " + (escolhaUsuario ? "Verdadeiro" : "Falso") + "?", SwingConstants.CENTER);
         lblRodada.setFont(new Font("Arial", Font.BOLD, 22));
         add(lblRodada, BorderLayout.NORTH);
 
-        JPanel painelCentral = new JPanel();
-        painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
-        painelCentral.setBorder(BorderFactory.createEmptyBorder(70, 80, 20, 20));
 
+        JPanel painelCentralGeral = new JPanel();
+        painelCentralGeral.setLayout(new BoxLayout(painelCentralGeral, BoxLayout.Y_AXIS));
+        painelCentralGeral.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+
+
+        JPanel painelImagem = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        java.net.URL imgUrl = getClass().getResource("/imagem/" + questaoAtual.getCaminhoImagem());
+
+        if (imgUrl != null) {
+            ImageIcon imgIcon = new ImageIcon(imgUrl);
+            Image img = imgIcon.getImage();
+
+
+            Image imagemRedimensionada = img.getScaledInstance(800, 600, Image.SCALE_SMOOTH);
+            JLabel lblImagem = new JLabel(new ImageIcon(imagemRedimensionada));
+            lblImagem.setPreferredSize(new Dimension(800, 600));
+            painelImagem.add(lblImagem);
+        } else {
+            JLabel lblErro = new JLabel("Imagem não encontrada: " + questaoAtual.getCaminhoImagem());
+            lblErro.setFont(new Font("Arial", Font.ITALIC, 14));
+            painelImagem.add(lblErro);
+        }
+        painelCentralGeral.add(painelImagem);
+        painelCentralGeral.add(Box.createRigidArea(new Dimension(0, 10)));
+
+
+        JPanel painelInstrucao = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JLabel Instrucao = new JLabel("Selecione uma justificativa de suporte:");
         Instrucao.setFont(new Font("Arial", Font.BOLD, 18));
-        Instrucao.setAlignmentX(Component.LEFT_ALIGNMENT);
-        painelCentral.add(Instrucao);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 10)));
+        painelInstrucao.add(Instrucao);
+        painelCentralGeral.add(painelInstrucao);
+        painelCentralGeral.add(Box.createRigidArea(new Dimension(0, 10)));
 
+
+        JPanel painelOpcoesGrade = new JPanel(new GridLayout(3, 2, 40, 10));
+
+
+        JPanel painelOpcoesCentralizado = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        painelOpcoesGrade.setPreferredSize(new Dimension(900, 100)); // Limita a largura total das opções
 
         ArrayList<String> opcoes = questaoAtual.getJustificativas();
         Collections.shuffle(opcoes);
@@ -62,7 +92,6 @@ public class TelaJustificativa extends JFrame implements Exibivel {
 
         Font fonteChecks = new Font("Arial", Font.PLAIN, 16);
 
-
         JRadioButton radio1 = new JRadioButton(txtA);
         JRadioButton radio2 = new JRadioButton(txtB);
         JRadioButton radio3 = new JRadioButton(txtC);
@@ -70,57 +99,38 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         JRadioButton radio5 = new JRadioButton(txtE);
         JRadioButton radio6 = new JRadioButton(txtF);
 
-
-        radio1.setFont(fonteChecks);
-        radio2.setFont(fonteChecks);
-        radio3.setFont(fonteChecks);
-        radio4.setFont(fonteChecks);
-        radio5.setFont(fonteChecks);
-        radio6.setFont(fonteChecks);
+        JRadioButton[] todosRadios = {radio1, radio2, radio3, radio4, radio5, radio6};
 
 
-        radio1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        radio2.setAlignmentX(Component.LEFT_ALIGNMENT);
-        radio3.setAlignmentX(Component.LEFT_ALIGNMENT);
-        radio4.setAlignmentX(Component.LEFT_ALIGNMENT);
-        radio5.setAlignmentX(Component.LEFT_ALIGNMENT);
-        radio6.setAlignmentX(Component.LEFT_ALIGNMENT);
+        for (JRadioButton radio : todosRadios) {
+            radio.setFont(fonteChecks);
+            grupoJustificativas.add(radio);
+            listaRadios.add(radio);
+        }
 
 
-        painelCentral.add(radio1);
-        painelCentral.add(radio2);
-        painelCentral.add(radio3);
-        painelCentral.add(radio4);
-        painelCentral.add(radio5);
-        painelCentral.add(radio6);
+        painelOpcoesGrade.add(radio1);
+        painelOpcoesGrade.add(radio2);
+        painelOpcoesGrade.add(radio3);
+        painelOpcoesGrade.add(radio4);
+        painelOpcoesGrade.add(radio5);
+        painelOpcoesGrade.add(radio6);
 
-        add(painelCentral, BorderLayout.CENTER);
-
-
-        grupoJustificativas.add(radio1);
-        grupoJustificativas.add(radio2);
-        grupoJustificativas.add(radio3);
-        grupoJustificativas.add(radio4);
-        grupoJustificativas.add(radio5);
-        grupoJustificativas.add(radio6);
+        painelOpcoesCentralizado.add(painelOpcoesGrade);
+        painelCentralGeral.add(painelOpcoesCentralizado);
 
 
-        listaRadios.add(radio1);
-        listaRadios.add(radio2);
-        listaRadios.add(radio3);
-        listaRadios.add(radio4);
-        listaRadios.add(radio5);
-        listaRadios.add(radio6);
+        add(painelCentralGeral, BorderLayout.CENTER);
 
 
-        JPanel painelBotoes = new JPanel(new GridLayout(1, 2, 10, 0));
-        painelBotoes.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 10));
+        painelBotoes.setBorder(BorderFactory.createEmptyBorder(0, 10, 15, 10));
 
         JButton botaoConfirmar = new JButton("Confirmar Justificativa");
         JButton botaoPular = new JButton("Pular Justificativa");
 
-        botaoConfirmar.setPreferredSize(new Dimension(120, 45));
-        botaoPular.setPreferredSize(new Dimension(120, 45));
+        botaoConfirmar.setPreferredSize(new Dimension(200, 40));
+        botaoPular.setPreferredSize(new Dimension(200, 40));
 
         painelBotoes.add(botaoConfirmar);
         painelBotoes.add(botaoPular);
@@ -170,7 +180,6 @@ public class TelaJustificativa extends JFrame implements Exibivel {
 
         double somaResultado = this.pontuacao + pontosGanhos;
 
-
         String statusAcerto = "";
         if (acertouNoticia) {
             if (justificaCorreta) {
@@ -185,17 +194,20 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         String respostaCerta = questaoAtual.isEVerdadeira() ? "VERDADEIRA" : "FALSA";
         String explicacaoFormatada = quebrarTexto(questaoAtual.getExplicacaoFinal(), 50);
 
-        // Concatenação para o corpo da caixa de diálogo
+        String justificativaExibida = "Nenhuma cadastrada";
+        if (questaoAtual.getJustificativasCorretas() != null && !questaoAtual.getJustificativasCorretas().isEmpty()) {
+            justificativaExibida = questaoAtual.getJustificativasCorretas().get(0);
+        }
+
         String mensagem = statusAcerto + "\n\n" +
                 "A notícia é: " + respostaCerta + "\n\n" +
+                "Justificativa Correta: " + justificativaExibida + "\n\n" +
                 "Explicação:\n" + explicacaoFormatada + "\n\n" +
                 "Pontos ganho: " + pontosGanhos;
 
         JOptionPane.showMessageDialog(this, mensagem, "Resultado da Rodada", JOptionPane.INFORMATION_MESSAGE);
 
-
         this.dispose();
-
 
         if (this.rodada < listaDoRound.size()) {
             new TelaNoticia(this.rodada + 1, somaResultado, this.listaDoRound).setVisible(true);

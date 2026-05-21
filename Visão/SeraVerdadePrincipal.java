@@ -24,7 +24,11 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
         lblTitulo.setBorder(BorderFactory.createEmptyBorder(30, 10, 20, 10));
         add(lblTitulo, BorderLayout.NORTH);
 
-        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 15));
+
+        JPanel painelBotoes = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 10, 0, 10);
+
         JButton btIniciar = new JButton("Iniciar Quiz");
         JButton btComoJogar = new JButton("Tutorial");
         JButton btSair = new JButton("Sair");
@@ -33,10 +37,13 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
         btIniciar.setPreferredSize(dBotao);
         btComoJogar.setPreferredSize(dBotao);
         btSair.setPreferredSize(dBotao);
-        painelBotoes.add(btIniciar);
-        painelBotoes.add(btComoJogar);
-        painelBotoes.add(btSair);
+
+
+        painelBotoes.add(btIniciar, gbc);
+        painelBotoes.add(btComoJogar, gbc);
+        painelBotoes.add(btSair, gbc);
         add(painelBotoes, BorderLayout.CENTER);
+
 
         btIniciar.addActionListener(e -> {
             ArrayList<QuestaoQuiz> bancoManchetes = new ArrayList<>();
@@ -176,7 +183,7 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             corretas9.add("Descontextualização Profissional");
 
             bancoManchetes.add(new QuestaoQuiz(false, "noticia 9.jpg", just9, corretas9, "A afirmação é falsa porque distorce a proporção dos riscos para gerar pânico. Embora a miocardite seja um efeito colateral raríssimo das vacinas (cerca de 1 caso em 100 mil), o risco de desenvolver essa mesma inflamação cardíaca pela infecção do vírus é oito vezes maior e muito mais grave.\n\n" +
-                    "Estudos publicados no JAMA confirmam que os casos pós-vacina são, em sua maioria, leves e de rápida recuperação. Em contraste, a miocardite causada pela Covid-19 em jovens costuma gerar quadros severos e hospitalizações. Portanto, a vacinação não é um \"experimento perigoso\", mas a forma mais segura de proteger o coração dos adolescentes contra os danos reais e superiores causados pela doença.\n"));
+                    "Estudos publicados no JAMA confirmam que os casos pós-vacina são, em sua maioria, leves e de rápida recuperação. Em contraste, a miocardite causada pela Covid-19 in jovens costuma gerar quadros severos e hospitalizações. Portanto, a vacinação não é um \"experimento perigoso\", mas a forma mais segura de proteger o coração dos adolescentes contra os danos reais e superiores causados pela doença.\n"));
 
             ArrayList<String> just10 = new ArrayList<>();
             just10.add("Apelo ao medo");
@@ -210,7 +217,7 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
 
             ArrayList<String> just12 = new ArrayList<>();
             just12.add("Fonte Governamental Oficial");
-            just12.add("Transparência de ParcerParcerias");
+            just12.add("Transparência de Parcerias");
             just12.add("Viés Político/Institucional");
             just12.add("Insinuação de Incentivo Sexual");
             just12.add("Invasividade");

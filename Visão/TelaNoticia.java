@@ -45,12 +45,13 @@ public class TelaNoticia extends JFrame implements Exibivel {
             ImageIcon imgIcon = new ImageIcon(imgUrl);
             Image img = imgIcon.getImage();
 
-            Image imagemRedimensionada = img.getScaledInstance(540, 420, Image.SCALE_SMOOTH);
+
+            Image imagemRedimensionada = img.getScaledInstance(800, 600, Image.SCALE_SMOOTH);
             ImageIcon iconeFormatado = new ImageIcon(imagemRedimensionada);
 
             JLabel lblImagem = new JLabel(iconeFormatado);
+            lblImagem.setPreferredSize(new Dimension(800, 600));
 
-            lblImagem.setPreferredSize(new Dimension(540, 420));
 
             painelCentral.add(lblImagem, BorderLayout.CENTER);
 
@@ -66,13 +67,20 @@ public class TelaNoticia extends JFrame implements Exibivel {
 
         add(painelCentral, BorderLayout.CENTER);
 
-
-
         JPanel painelEscolha = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 20));
         JButton btVerdadeiro = new JButton("Verdadeiro");
         JButton btFalso = new JButton("Falso");
         btVerdadeiro.setPreferredSize(new Dimension(200, 40));
         btFalso.setPreferredSize(new Dimension(200, 40));
+
+        btVerdadeiro.setBackground(new Color(144, 238, 144));
+        btVerdadeiro.setOpaque(true);
+        btVerdadeiro.setBorderPainted(false);
+
+        btFalso.setBackground(new Color(255, 127, 127));
+        btFalso.setOpaque(true);
+        btFalso.setBorderPainted(false);
+
         painelEscolha.add(btVerdadeiro);
         painelEscolha.add(btFalso);
         add(painelEscolha, BorderLayout.SOUTH);

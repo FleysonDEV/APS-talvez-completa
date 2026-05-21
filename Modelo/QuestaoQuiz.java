@@ -28,7 +28,7 @@ public class QuestaoQuiz {
         return caminhoImagem;
     }
 
-    public ArrayList<String> getJustificativas() { // Mantive o nome original para não quebrar seu código antigo
+    public ArrayList<String> getJustificativas() {
         return justificativas;
     }
 
