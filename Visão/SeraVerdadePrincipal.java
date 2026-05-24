@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * CONCEITO DE HERANÇA: 'TelaNoticia' estende (extends) a classe 'JFrame', herdando
  * toda a infraestrutura necessária para criar e gerenciar uma janela gráfica no Swing.
- * * CONCEITO DE INTERFACE E POLIMORFISMO: A classe implementa (implements) a interface 'Exibivel'.
+ * CONCEITO DE INTERFACE E POLIMORFISMO: A classe implementa (implements) a interface 'Exibivel'.
  * Isso estabelece um contrato que obriga a implementação do método 'configurarLayout()'.
  */
 public class SeraVerdadePrincipal extends JFrame implements Exibivel {
@@ -26,10 +26,7 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
         setExtendedState(MAXIMIZED_BOTH);   // Define a janela para iniciar maximizada
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Encerra o processo do programa ao fechar a janela
         setLocationRelativeTo(null);// Centraliza a janela na tela caso não esteja maximizada
-        /**
-         * POLIMORFISMO: O método 'setLayout' aceita uma referência genérica da interface 'LayoutManager'.
-         * Passar uma instância de 'BorderLayout' para ele é um exemplo de polimorfismo (classe específica agindo como sua interface).
-         */
+        //POLIMORFISMO: O método 'setLayout' espera uma referência abstrata da interface 'LayoutManager'.
         setLayout(new BorderLayout());
 
         JLabel lblTitulo = new JLabel("Olá! Seja bem vindo ao - SeraVerdade?", SwingConstants.CENTER);

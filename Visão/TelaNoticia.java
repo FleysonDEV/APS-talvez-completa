@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * CONCEITO DE HERANÇA: 'TelaNoticia' estende (extends) a classe 'JFrame', herdando
  * toda a infraestrutura necessária para criar e gerenciar uma janela gráfica no Swing.
- * * CONCEITO DE INTERFACE E POLIMORFISMO: A classe implementa (implements) a interface 'Exibivel'.
+ *  CONCEITO DE INTERFACE E POLIMORFISMO: A classe implementa (implements) a interface 'Exibivel'.
  * Isso estabelece um contrato que obriga a implementação do método 'configurarLayout()'.
  */
 public class TelaNoticia extends JFrame implements Exibivel {
@@ -71,7 +71,7 @@ public class TelaNoticia extends JFrame implements Exibivel {
 
         } catch (TratamentoImagens ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage() + "\nEsta rodada será pulada.", "Erro de Recurso", JOptionPane.ERROR_MESSAGE);
-            // FLUXO ALTERNATIVO: Método auxiliar chamado para desviar e recuperar o fluxo do programa com seguran
+            // FLUXO ALTERNATIVO: Método auxiliar chamado para desviar e recuperar o fluxo do programa com segurança
             pularRodadaSemPontuar();
             return;
         }
@@ -115,8 +115,8 @@ public class TelaNoticia extends JFrame implements Exibivel {
         });
     }
     /**
-     * COESÃO DE MÉTODOS: Método utilitário privado responsável especificamente pela
-     * regra de transição de rodadas caso ocorra alguma falha crítica.
+      Método utilitário privado responsável especificamente pela
+      regra de transição de rodadas caso ocorra alguma falha crítica.
      */
     private void pularRodadaSemPontuar() {
         this.dispose();

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * CONCEITO DE INTERFACE E POLIMORFISMO: Implementa 'Exibivel', cumprindo o contrato do método 'configurarLayout()'.
  */
 public class TelaJustificativa extends JFrame implements Exibivel {
-    /** ENCAPSULAMENTO: Atributos privados para proteção do estado interno do objeto. */
+    // ENCAPSULAMENTO: Atributos privados para proteção do estado interno do objeto.
     private QuestaoQuiz questaoAtual;
     private boolean escolhaUsuario;
     private int rodada;
@@ -39,6 +39,7 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        //POLIMORFISMO: O método 'setLayout' espera uma referência abstrata da interface 'LayoutManager'.
         setLayout(new BorderLayout(10, 5));
         // OPERADOR TERNÁRIO: Avalia de forma compacta e condicional a String baseada no booleano 'escolhaUsuario'
         JLabel lblRodada = new JLabel("Por que você acha que é " + (escolhaUsuario ? "Verdadeiro" : "Falso") + "?", SwingConstants.CENTER);
@@ -52,7 +53,7 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         JPanel painelImagem = new JPanel(new FlowLayout(FlowLayout.CENTER));
         java.net.URL imgUrl = getClass().getResource("/imagem/" + questaoAtual.getCaminhoImagem());
 
-        // TRATAMENTO DE EXCEÇÃO
+        // Tratamento de exceção
         try {
             if (imgUrl == null) {
                 // LANÇAMENTO DE EXCEÇÃO (throw): Dispara manualmente uma instância da sua classe de exceção personalizada
@@ -159,7 +160,7 @@ public class TelaJustificativa extends JFrame implements Exibivel {
             FimDeRodada(false);
         });
     }
-
+    //Lógica para calcular a pontuação ao termino da rodada
     private void FimDeRodada(boolean justificou) {
         boolean acertouNoticia = (escolhaUsuario == questaoAtual.isEVerdadeira());
         boolean justificaCorreta = true;
@@ -227,7 +228,7 @@ public class TelaJustificativa extends JFrame implements Exibivel {
     }
 
     /**
-     * MÉTODO DE RECUPERAÇÃO DE FLUXO (Plano de Contingência): Método local adicionado para ser chamado pelo bloco
+     * MÉTODO DE RECUPERAÇÃO DE FLUXO: Método local adicionado para ser chamado pelo bloco
      * 'catch' em caso de falha crítica na imagem. Permite desviar o fluxo do jogo de forma limpa sem que o software trave.
      */
     private void pularRodadaSemPontuar() {
