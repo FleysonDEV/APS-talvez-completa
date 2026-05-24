@@ -4,48 +4,70 @@ import Modelo.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+/**
+ * CONCEITO DE HERANÇA: 'TelaNoticia' estende (extends) a classe 'JFrame', herdando
+ * toda a infraestrutura necessária para criar e gerenciar uma janela gráfica no Swing.
+ * * CONCEITO DE INTERFACE E POLIMORFISMO: A classe implementa (implements) a interface 'Exibivel'.
+ * Isso estabelece um contrato que obriga a implementação do método 'configurarLayout()'.
+ */
 public class SeraVerdadePrincipal extends JFrame implements Exibivel {
-
+    // CONSTRUTOR: Método especial executado ao instanciar a classe, responsável por disparar a montagem da tela.
     public SeraVerdadePrincipal() {
         configurarLayout();
     }
-
+    /**
+     * SOBRESCRITA DE MÉTODO (@Override): Redefine o comportamento do método abstrato
+     * declarado na interface 'Exibivel', adaptando-o para construir o menu principal deste jogo.
+     */
     @Override
     public void configurarLayout() {
+        // Configurações básicas da janela herdadas de JFrame
         setTitle("SeraVerdade - Quiz de Notícias");
-        setExtendedState(MAXIMIZED_BOTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);   // Define a janela para iniciar maximizada
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Encerra o processo do programa ao fechar a janela
+        setLocationRelativeTo(null);// Centraliza a janela na tela caso não esteja maximizada
+        /**
+         * POLIMORFISMO: O método 'setLayout' aceita uma referência genérica da interface 'LayoutManager'.
+         * Passar uma instância de 'BorderLayout' para ele é um exemplo de polimorfismo (classe específica agindo como sua interface).
+         */
         setLayout(new BorderLayout());
 
         JLabel lblTitulo = new JLabel("Olá! Seja bem vindo ao - SeraVerdade?", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 36));
-        lblTitulo.setBorder(BorderFactory.createEmptyBorder(30, 10, 20, 10));
-        add(lblTitulo, BorderLayout.NORTH);
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(30, 10, 20, 10));   // Adiciona espaçamento interno (margem)
+        add(lblTitulo, BorderLayout.NORTH); // Posiciona o título na região Norte do BorderLayout
 
-
+        /**
+         * GERENCIADOR DE LAYOUT COMPLEXO (GridBagLayout): Permite posicionar componentes em uma grade flexível.
+         * É ideal para centralizar os botões do menu na tela.
+         */
         JPanel painelBotoes = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(0, 10, 0, 10);
+        GridBagConstraints gbc = new GridBagConstraints();  // Objeto de configuração para o posicionamento dos componentes
+        gbc.insets = new Insets(0, 10, 0, 10);  // Define um espaçamento de 10 pixels nas laterais de cada botão
 
+        // Instanciação dos botões que compõem o menu
         JButton btIniciar = new JButton("Iniciar Quiz");
         JButton btComoJogar = new JButton("Tutorial");
         JButton btSair = new JButton("Sair");
 
+        // ENCAPSULAMENTO DE DIMENSÃO: Define um tamanho padronizado para todos os botões
         Dimension dBotao = new Dimension(150, 40);
         btIniciar.setPreferredSize(dBotao);
         btComoJogar.setPreferredSize(dBotao);
         btSair.setPreferredSize(dBotao);
 
-
+        // Adiciona os botões ao painel central respeitando as configurações do GridBagLayout
         painelBotoes.add(btIniciar, gbc);
         painelBotoes.add(btComoJogar, gbc);
         painelBotoes.add(btSair, gbc);
         add(painelBotoes, BorderLayout.CENTER);
-
-
+        /**
+         * EXPRESSÃO LAMBDA / INTERFACES FUNCIONAIS: O método 'addActionListener' recebe uma
+         * interface funcional (ActionListener). A sintaxe 'e -> { ... }' implementa o comportamento
+         * de clique de forma muito mais limpa que as antigas classes internas anônimas.
+         */
         btIniciar.addActionListener(e -> {
+            // Adição manual das questões ao banco de dados fictício através do construtor de QuestaoQuiz
             ArrayList<QuestaoQuiz> bancoManchetes = new ArrayList<>();
 
             ArrayList<String> just1 = new ArrayList<>();
@@ -345,16 +367,21 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
             corretas20.add("Coerência com a realidade epidemiológica");
 
             bancoManchetes.add(new QuestaoQuiz(true, "noticia 20.jpg", just20, corretas20, "A notícia sobre a recomendação de referência vacinal é verdadeira. O texto aborda um cenário real de utilidade pública e orientação clínica, tratando de forma neutra e puramente informativa o tempo necessário de espera após a infecção por Covid ou gripe para a aplicação do imunizante. A publicação demonstra rigor formal por meio de uma formatação estruturada, ausência de erros ortográficos, uso de botões de compartilhamento padrão de portais jornalísticos e uma fotografia perfeitamente contextualizada acompanhada de legenda e créditos institucionais legítimos."));
+            // ALGORITMO DE EMBARALHAMENTO: Sorteia as questões mudando o índice dos elementos da lista aleatoriamente
             Collections.shuffle(bancoManchetes);
-
+            // Garante que o jogo pegue no máximo 5 questões para o round, prevenindo erros caso o banco tenha menos que isso
             int limite = Math.min(bancoManchetes.size(), 5);
+            /**
+             * SUBCOLEÇÕES: Cria uma nova lista contendo apenas um recorte (subList) das primeiras
+             * 5 questões já embaralhadas do banco.
+             */
             ArrayList<QuestaoQuiz> selecionadas = new ArrayList<>(bancoManchetes.subList(0, limite));
-
+            // TRANSIÇÃO DE TELA: Abre a primeira rodada do quiz e fecha o menu principal atual
             new TelaNoticia(1, 0.0, selecionadas).setVisible(true);
-            this.dispose();
+            this.dispose(); // Libera a memória do menu principal
         });
 
-        btComoJogar.addActionListener(e -> {
+        btComoJogar.addActionListener(e -> {    // Evento de clique para o botão Tutorial (Exibe as regras em uma caixa de diálogo)
             String regras = "REGRAS DO JOGO \n\n" +
                     "1. Cada round possui uma notícia aleatória. Você deve responder se a notícia é verdadeira ou falsa\n" +
                     "2. Após responder, você deve escolher as justificativas.\n" +
@@ -363,8 +390,10 @@ public class SeraVerdadePrincipal extends JFrame implements Exibivel {
                     "• Acertou e Justificou: 2,0 pts\n" +
                     "• Acertou e Não Justificou: 1,5 pts\n" +
                     "• Errou: 0,0 pts";
+            // Componente de diálogo estático para exibir mensagens informativas ao usuário
             JOptionPane.showMessageDialog(this, regras, "Como Jogar", JOptionPane.INFORMATION_MESSAGE);
         });
+        // Evento de clique para o botão Sair
         btSair.addActionListener(e -> System.exit(0));
     }
 }
