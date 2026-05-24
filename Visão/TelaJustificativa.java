@@ -27,6 +27,11 @@ public class TelaJustificativa extends JFrame implements Exibivel {
         this.rodada = rodada;
         this.pontuacao = pontuacao;
         this.listaDoRound = lista;
+        //Pula a justificativa caso errar a resposta da notícia
+        if (this.escolhaUsuario != questaoAtual.isEVerdadeira()){
+            FimDeRodada(false);
+            return;
+        }
         configurarLayout();
     }
     /**
@@ -163,17 +168,24 @@ public class TelaJustificativa extends JFrame implements Exibivel {
     //Lógica para calcular a pontuação ao termino da rodada
     private void FimDeRodada(boolean justificou) {
         boolean acertouNoticia = (escolhaUsuario == questaoAtual.isEVerdadeira());
-        boolean justificaCorreta = true;
+        boolean justificaCorreta = false;
 
         if (justificou) {
+            String textoSelecionado = "";
             for (JRadioButton rad : listaRadios) {
-                String textoOpcao = rad.getText();
-                boolean usuarioMarcou = rad.isSelected();
-                boolean ehVerdadeira = questaoAtual.getJustificativasCorretas().contains(textoOpcao);
-
-                if (usuarioMarcou != ehVerdadeira) {
-                    justificaCorreta = false;
+                if (rad.isSelected()) {
+                    textoSelecionado = rad.getText();
                     break;
+                }
+            }
+
+            ArrayList<String> corretas = questaoAtual.getJustificativasCorretas();
+            if (corretas != null) {
+                for (String correta : corretas) {
+                    if (textoSelecionado.trim().equalsIgnoreCase(correta.trim())) {
+                        justificaCorreta = true;
+                        break;
+                    }
                 }
             }
         } else {
